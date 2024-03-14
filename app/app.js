@@ -68,11 +68,11 @@ startGame.addEventListener('click', function () {
         let cellElement = document.createElement('div');
 
         if (inputDifficultyElement === "easy") {
-            cellElement.className = 'cell-10';
+            cellElement.className = 'cell cell-10';
         } else if (inputDifficultyElement === "mid") {
-            cellElement.className = "cell-9";
+            cellElement.className = "cell cell-9";
         } else if (inputDifficultyElement === "hard") {
-            cellElement.className = "cell-7";
+            cellElement.className = "cell cell-7";
         }
 
         // Segnare sulla cella il numero corrispondente
@@ -84,17 +84,25 @@ startGame.addEventListener('click', function () {
         cellElement.addEventListener('click', function () {
             console.log('Hai selezionato la casella numero', num);
 
-            // Raccogliere i numeri corrispondenti delle celle clicckate senza accettare ripetizioni all'interno dell'array punteggio
-
             // Applicare la classe bomb alla cella corrispondente al numero dell'array apposito
             if (bombs.includes(i)) {
                 cellElement.classList.add('bomb');
                 cellElement.innerHTML = 'BOOM';
                 gameOver.innerHTML = `<h2>Hai perso.</h2>`;
+
+                // Raccogliere i numeri corrispondenti delle celle clicckate senza accettare ripetizioni all'interno dell'array punteggio
                 gameGrid.classList.add('endgame');
-                // for (let bomb = 0; bomb < numberOfCells; bomb++) {
-                //     if ()
-                // }
+                
+                // Selezionare tutte le celle
+                let allCell = document.querySelectorAll("[class^='cell']");
+
+                // Rendere visibili tutte le celle bomba
+                for (let y=0; y< numberOfCells; y++){
+                    let intToCheck = parseInt(allCell[y].innerHTML)-1;
+                    if (bombs.includes(intToCheck)) {
+                        allCell[y].classList.add('bomb');
+                    }    
+                }
             } else if (!pointsCounter.includes(i)) {
                 pointsCounter = pointsCounter.concat(i);
             };
@@ -106,13 +114,5 @@ startGame.addEventListener('click', function () {
             cellElement.classList.add ('selected');
 
         })
-
     }
-
-
-    // Creare un array punteggio vuoto
-    // Creare una variabile "punteggio" numerica con valore corrispondente al numero di eleenti presenti nell'array punteggio
-    // Mettere l'elemento dom del puntoggio con riferimento al valore "punteggio"
-    // Raccogliere i numeri corrispondenti delle celle clicckate senza accettare ripetizioni
-
 });
