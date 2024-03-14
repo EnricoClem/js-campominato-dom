@@ -15,9 +15,11 @@
 
 console.log('Campominato.');
 
-// Collegare con il bottone start
+// Collegare elementi DOM
 const startGame = document.getElementById('start-button');
-// Collegare il livello di difficoltà
+const pointsDisplay = document.getElementById('points');
+const gameOver = document.getElementById('game-over');
+
 
 // Ascoltare azione di click su bottone start
 startGame.addEventListener('click', function () {
@@ -26,6 +28,8 @@ startGame.addEventListener('click', function () {
     const gridElement = document.querySelector('.grid');
 
     let rowSize = 0;
+
+    // Collegare il livello di difficoltà
     let inputDifficultyElement = document.getElementById('difficulty').value;
 
     if (inputDifficultyElement === "easy") {
@@ -80,10 +84,11 @@ startGame.addEventListener('click', function () {
         // Applicare la classe bomb alla cella corrispondente al numero dell'array apposito
         if (bombs.includes(i)) {
             cellElement.classList.add ('bomb');
+            cellElement.innerHTML = 'BOOM';
         }
 
-        cellElement.classList.toggle('selected');
-        
+        cellElement.classList.add ('selected');
+
         })
 
     }

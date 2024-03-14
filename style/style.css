@@ -18,6 +18,14 @@ body {
     flex-wrap: wrap;
 }
 
+h1 {
+    display: block;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+}
+
 #start-button {
     background-color: indianred;
     color: white;
