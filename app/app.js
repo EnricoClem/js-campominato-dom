@@ -40,7 +40,9 @@ startGame.addEventListener('click', function () {
 
     const numberOfCells = rowSize ** 2;
 
-            // Generare 16 numeri casuali all'interno del range di difficoltà
+    gridElement.innerHTML = '';
+
+            // Generare 16 numeri casuali all'interno del range di difficoltà che corrisponderanno alle celle bomba
             let bombs = [];
             for (let n = 0; n < 16; ){
                 let randomNumber = Math.floor(Math.random() * numberOfCells);
@@ -52,8 +54,6 @@ startGame.addEventListener('click', function () {
             console.log(bombs)
     
     // Generare tante celle all'interno della griglia quante ne richiede il livello di difficoltà selezionato
-
-    gridElement.innerHTML = '';
  
     for (let i = 0; i < numberOfCells; i++) {
         const num = 1+ i;
@@ -61,13 +61,14 @@ startGame.addEventListener('click', function () {
         let cellElement = document.createElement('div');
 
         if (inputDifficultyElement === "easy") {
-            cellElement.classList.add ('cell-10');
+            cellElement.className = 'cell-10';
         } else if (inputDifficultyElement === "mid") {
             cellElement.className = "cell-9";
         } else if (inputDifficultyElement === "hard") {
             cellElement.className = "cell-7";
         }
-        
+
+        // Segnare sulla cella il numero corrispondente
         cellElement.innerHTML = num;
 
         gridElement.append(cellElement);
@@ -75,8 +76,14 @@ startGame.addEventListener('click', function () {
         // Permettere di cambiare colore alle celle al click
         cellElement.addEventListener('click', function () {
             console.log('Hai selezionato la casella numero', num);
+                    
+        // Applicare la classe bomb alla cella corrispondente al numero dell'array apposito
+        if (bombs.includes(i)) {
+            cellElement.classList.add ('bomb');
+        }
 
-            cellElement.classList.toggle('selected');
+        cellElement.classList.toggle('selected');
+        
         })
 
     }

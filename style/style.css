@@ -61,5 +61,9 @@ div[class^="cell"] {
 }
 
 .selected {
+    background-color: cadetblue;
+}
+
+.bomb {
     background-color: indianred;
 }
