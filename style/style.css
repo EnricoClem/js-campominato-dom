@@ -26,6 +26,20 @@ h1 {
     padding-top: 20px;
 }
 
+h2 {
+    font-size: 25px;
+    color: indianred;
+    background-color: white;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+h3 {
+    font-size: 20px;
+    color: white;
+    padding-bottom: 15px;
+}
+
 #start-button {
     background-color: indianred;
     color: white;
@@ -41,6 +55,11 @@ h1 {
     background-color: rgb(238, 181, 181);
     margin: 10px;
     padding: 0 10px;
+}
+
+#game-over, #points {
+    display: flex;
+    justify-content: center;
 }
 
 .grid-wrapper {

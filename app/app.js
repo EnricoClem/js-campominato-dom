@@ -20,10 +20,15 @@ const startGame = document.getElementById('start-button');
 const pointsDisplay = document.getElementById('points');
 const gameOver = document.getElementById('game-over');
 
+// Creare un array punteggio vuoto
+let pointsCounter = [];
 
 // Ascoltare azione di click su bottone start
 startGame.addEventListener('click', function () {
     console.log('Inizio gioco!');
+
+    // Mettere l'elemento dom del puntoggio con riferimento al valore "punteggio"
+    pointsDisplay.innerHTML = `<h3>Il tuo punteggio: ${pointsCounter.length}</h3>`;
 
     const gridElement = document.querySelector('.grid');
 
@@ -85,6 +90,7 @@ startGame.addEventListener('click', function () {
         if (bombs.includes(i)) {
             cellElement.classList.add ('bomb');
             cellElement.innerHTML = 'BOOM';
+            gameOver.innerHTML = `<h2>Hai perso.</h2>`
         }
 
         cellElement.classList.add ('selected');
@@ -92,5 +98,10 @@ startGame.addEventListener('click', function () {
         })
 
     }
+
+    // Creare un array punteggio vuoto
+    // Creare una variabile "punteggio" numerica con valore corrispondente al numero di eleenti presenti nell'array punteggio
+    // Mettere l'elemento dom del puntoggio con riferimento al valore "punteggio"
+    // Raccogliere i numeri corrispondenti delle celle clicckate senza accettare ripetizioni
 
 });
