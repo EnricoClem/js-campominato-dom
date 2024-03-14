@@ -62,7 +62,7 @@ h3 {
     justify-content: center;
 }
 
-.grid-wrapper {
+#grid-wrapper {
     padding: 10px 80px;
 }
 
@@ -93,4 +93,8 @@ div[class^="cell"] {
 
 .bomb {
     background-color: indianred;
+}
+
+.endgame {
+    pointer-events: none;
 }

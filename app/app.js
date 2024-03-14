@@ -19,6 +19,7 @@ console.log('Campominato.');
 const startGame = document.getElementById('start-button');
 const pointsDisplay = document.getElementById('points');
 const gameOver = document.getElementById('game-over');
+let gameGrid = document.getElementById('grid-wrapper');
 
 // Creare un array punteggio vuoto
 let pointsCounter = [];
@@ -26,9 +27,6 @@ let pointsCounter = [];
 // Ascoltare azione di click su bottone start
 startGame.addEventListener('click', function () {
     console.log('Inizio gioco!');
-
-    // Mettere l'elemento dom del puntoggio con riferimento al valore "punteggio"
-    pointsDisplay.innerHTML = `<h3>Il tuo punteggio: ${pointsCounter.length}</h3>`;
 
     const gridElement = document.querySelector('.grid');
 
@@ -85,19 +83,32 @@ startGame.addEventListener('click', function () {
         // Permettere di cambiare colore alle celle al click
         cellElement.addEventListener('click', function () {
             console.log('Hai selezionato la casella numero', num);
-                    
-        // Applicare la classe bomb alla cella corrispondente al numero dell'array apposito
-        if (bombs.includes(i)) {
-            cellElement.classList.add ('bomb');
-            cellElement.innerHTML = 'BOOM';
-            gameOver.innerHTML = `<h2>Hai perso.</h2>`
-        }
 
-        cellElement.classList.add ('selected');
+            // Raccogliere i numeri corrispondenti delle celle clicckate senza accettare ripetizioni all'interno dell'array punteggio
+
+            // Applicare la classe bomb alla cella corrispondente al numero dell'array apposito
+            if (bombs.includes(i)) {
+                cellElement.classList.add('bomb');
+                cellElement.innerHTML = 'BOOM';
+                gameOver.innerHTML = `<h2>Hai perso.</h2>`;
+                gameGrid.classList.add('endgame');
+                // for (let bomb = 0; bomb < numberOfCells; bomb++) {
+                //     if ()
+                // }
+            } else if (!pointsCounter.includes(i)) {
+                pointsCounter = pointsCounter.concat(i);
+            };
+
+            // Mettere l'elemento dom del puntoggio con riferimento al valore "punteggio"
+            pointsDisplay.innerHTML = `<h3>Il tuo punteggio: ${pointsCounter.length}</h3>`;
+
+
+            cellElement.classList.add ('selected');
 
         })
 
     }
+
 
     // Creare un array punteggio vuoto
     // Creare una variabile "punteggio" numerica con valore corrispondente al numero di eleenti presenti nell'array punteggio
