@@ -57,7 +57,16 @@ h3 {
     padding: 0 10px;
 }
 
-#game-over, #points {
+.game-over-hidden {
+    display: none;
+    justify-content: center;
+}
+
+.game-over {
+    display: flex;
+}
+
+#points {
     display: flex;
     justify-content: center;
 }

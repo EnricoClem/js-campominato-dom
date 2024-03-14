@@ -18,7 +18,7 @@ console.log('Campominato.');
 // Collegare elementi DOM
 const startGame = document.getElementById('start-button');
 const pointsDisplay = document.getElementById('points');
-const gameOver = document.getElementById('game-over');
+let gameOver = document.getElementsByClassName('game-over-hidden')[0];
 let gameGrid = document.getElementById('grid-wrapper');
 
 // Creare un array punteggio vuoto
@@ -27,6 +27,11 @@ let pointsCounter = [];
 // Ascoltare azione di click su bottone start
 startGame.addEventListener('click', function () {
     console.log('Inizio gioco!');
+
+    // Regole di reset per far ripartire il gioco
+    pointsCounter.length = 0;
+    gameGrid.classList.remove('endgame');
+    gameOver.classList.remove('game-over');
 
     const gridElement = document.querySelector('.grid');
 
@@ -88,7 +93,7 @@ startGame.addEventListener('click', function () {
             if (bombs.includes(i)) {
                 cellElement.classList.add('bomb');
                 cellElement.innerHTML = 'BOOM';
-                gameOver.innerHTML = `<h2>Hai perso.</h2>`;
+                gameOver.classList.add('game-over');
 
                 // Raccogliere i numeri corrispondenti delle celle clicckate senza accettare ripetizioni all'interno dell'array punteggio
                 gameGrid.classList.add('endgame');
@@ -101,8 +106,9 @@ startGame.addEventListener('click', function () {
                     let intToCheck = parseInt(allCell[y].innerHTML)-1;
                     if (bombs.includes(intToCheck)) {
                         allCell[y].classList.add('bomb');
-                    }    
+                    }
                 }
+            // Applicare un punto se la cella non era una bomba    
             } else if (!pointsCounter.includes(i)) {
                 pointsCounter = pointsCounter.concat(i);
             };
